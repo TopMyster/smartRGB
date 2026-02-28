@@ -1,7 +1,9 @@
 :root {
-  --default: yellow;
-  --low-power: red;
-  --charging: green;
+  --low-power: linear-gradient(135deg, rgb(248, 14, 14), rgb(248, 14, 14));
+  --charging: linear-gradient(135deg, rgb(54, 233, 54), rgb(54, 233, 54));
+  --mid-power: linear-gradient(135deg, rgb(234, 255, 0), rgb(234, 255, 0));
+  --high-power: linear-gradient(135deg, rgb(0, 128, 28), rgb(0, 128, 28));
+  --default: blue;
 }
 
 html,
@@ -11,14 +13,17 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
+  background-color: transparent;
+  pointer-events: none;
 }
 
 .container {
   width: 100%;
-  height: .5%;
+  height: 5px;
 }
 
 .rgb {
   height: 100%;
   width: 100%;
+  transition: background 0.5s ease;
 }

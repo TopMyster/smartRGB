@@ -12,37 +12,41 @@ export default function RGB() {
         const isCharging = !!batteryInfo?.isCharging;
         const level = batteryInfo?.level ?? 100;
         const isLowPower = level < 20;
+        const isMidPower = level < 50;
+        const isHighPower = level < 100;
 
         if (isCharging) {
           setState('charging');
-          console.log('Battery state: charging');
+          console.log('Charging');
         } else if (isLowPower) {
           setState('low-power');
-          console.log('Battery state: low-power');
+          console.log('Low power');
+        } else if (isMidPower) {
+          setState('mid-power');
+          console.log('Mid power');
+        } else if (isHighPower) {
+          setState('high-power');
+          console.log('High power');
         } else {
-          setState('default');
-          console.log('Battery state: default');
+          setState('high-power');
+          console.log('High power (Full)');
         }
       } catch (error) {
         console.error("Failed to get battery info:", error);
       }
     }
+
     updateBatteryInfo();
+    setInterval(updateBatteryInfo, 1000);
 
-
-    // Headphones
-
-    // Statements
-
-
-  }, [])
+  }, []);
 
   return (
     <>
       <div className="container">
         <div className="rgb"
           style={{
-            backgroundColor: `var(--${state})`
+            background: `var(--${state}, #1a1a1a)`
           }}
         ></div>
       </div>
